@@ -51,8 +51,11 @@ PASSWORD = config['DEFAULT']['PASSWORD']
 SERVER = config['DEFAULT']['SERVER']
 FILENAME = config['DEFAULT']['FILENAME']
 WAITTIME = int(config['DEFAULT']['WAITTIME'])
+RUNTIME = int(config['DEFAULT']['RUNTIME'])
 
-while(True):
+end_date_time = time.time()+RUNTIME
+
+while(time.time() < end_date_time):
 
     # connect to the server and go to its inbox
     mail = imaplib.IMAP4_SSL(SERVER)
@@ -175,6 +178,11 @@ while(True):
                 subject = "North Shore Dog Calender Invites Week Of %s" % (week)
                 dates_list = "\n".join(dates)
                 text = "Hello %s,\nAttached are the calender invites for the dates:\n%s" % (name, dates_list)
+                text += "\n\n"
+                text += "Gingr: nsdog.gingrapp.com\n"
+                text += "Slack: northshoredog.slack.com\n"
+                text += "\n\n"
+                text += "This is an auto generated email report.\n"
                 files = [FILENAME]
 
                 print(mail_from)
@@ -197,4 +205,6 @@ while(True):
 
     if len(mail_ids) == 0:
         time.sleep(WAITTIME)
-# End of while True
+    else:
+        end_date_time = time.time()+RUNTIME
+    # End of while True

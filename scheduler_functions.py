@@ -83,9 +83,11 @@ def iphone_fix(mail_content):
     
     for line in mail_content.split('\n'):
         if len(line) == 0:
+            fixed_lines += "\n"
             continue
         # End of if len()
-        if line == ">=20\r":
+        if line[:4] == ">=20":
+            fixed_lines += "\n"
             continue
         # End of if len()
         if line[:2] == "> ":
@@ -100,6 +102,9 @@ def iphone_fix(mail_content):
         fixed_lines += '\n'
 
     # End of for line in mail_content
+
+    if fixed_lines[-1] == "\n":
+        fixed_lines = fixed_lines[:-1]
 
     return fixed_lines
 
