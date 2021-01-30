@@ -53,7 +53,13 @@ FILENAME = config['DEFAULT']['FILENAME']
 WAITTIME = int(config['DEFAULT']['WAITTIME'])
 RUNTIME = int(config['DEFAULT']['RUNTIME'])
 
+if RUNTIME == 0:
+    RUNTIME = 86400
+
 end_date_time = time.time()+RUNTIME
+
+value = datetime.fromtimestamp(end_date_time)
+print(value.strftime('%Y-%m-%d %H:%M:%S'))
 
 while(time.time() < end_date_time):
 
@@ -142,7 +148,10 @@ while(time.time() < end_date_time):
                  shifts_list) = sf.parse_for_email_shifts(mail_content)
 
                 if (name is None) or (week is None) or (shifts_list is None):
-                    sf.move_email(mail, i, 'Unable To Complete')
+                    sf.move_email(mail, i, '"Unable To Complete"')
+                    print("Unable to complete: %s, %s, %s" % (mail_from,
+                                                              mail_date,
+                                                              mail_subject))
                     continue
                 # End of if (name is None) or ...
 

@@ -24,6 +24,7 @@ class Shift():
 
 
 def move_email(mail, mail_id, location):
+
     result = mail.copy(mail_id, location)
     
     if result[0] == 'OK':
@@ -158,7 +159,7 @@ def parse_for_email_shifts(mail_content):
         
         day_content = result[3]
         
-        ptrn_shift = re.compile(r'(\d)+:(\d\d) (\w\w) - (\d+):(\d\d) (\w\w) - ([\w ]+)',re.MULTILINE)
+        ptrn_shift = re.compile(r'(\d+):(\d\d) (\w\w) - (\d+):(\d\d) (\w\w) - ([\w ]+)',re.MULTILINE)
         results_shift = ptrn_shift.findall(day_content)
         
         # Get the working times in the days working
