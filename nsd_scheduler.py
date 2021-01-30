@@ -53,7 +53,7 @@ FILENAME = config['DEFAULT']['FILENAME']
 WAITTIME = int(config['DEFAULT']['WAITTIME'])
 RUNTIME = int(config['DEFAULT']['RUNTIME'])
 
-if RUNTIME == 0:
+if RUNTIME == -1:
     RUNTIME = 86400
 
 end_date_time = time.time()+RUNTIME
