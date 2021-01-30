@@ -191,7 +191,7 @@ while(time.time() < end_date_time):
                 text += "Gingr: nsdog.gingrapp.com\n"
                 text += "Slack: northshoredog.slack.com\n"
                 text += "\n\n"
-                text += "This is an auto generated email report.\n"
+                text += "This is an auto generated email report. Please review the attachment to ensure information is correct.\n"
                 files = [FILENAME]
 
                 print(mail_from)
